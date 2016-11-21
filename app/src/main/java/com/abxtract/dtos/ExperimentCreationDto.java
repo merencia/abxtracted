@@ -20,6 +20,7 @@ public class ExperimentCreationDto {
 	private List<ScenarioCreationDto> scenarios;
 
 	@Getter
+	@Setter
 	@AllArgsConstructor
 	@Builder
 	public static class ScenarioCreationDto {
