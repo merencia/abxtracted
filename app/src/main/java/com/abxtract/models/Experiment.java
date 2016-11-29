@@ -1,6 +1,5 @@
 package com.abxtract.models;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -11,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,21 +21,23 @@ import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "experiments")
+@Table(name = "experiments", uniqueConstraints = {
+		@UniqueConstraint(columnNames = { "project_id", "key" })
+})
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Experiment extends Model implements Serializable {
+public class Experiment extends Model {
 
 	@Id
 	@GeneratedValue(generator = "uuid2")
 	@GenericGenerator(name = "uuid2", strategy = "uuid2")
-	private Long id;
+	private String id;
 
 	@ManyToOne
-	private Tenant tenant;
+	private Project project;
 
 	private String name;
 

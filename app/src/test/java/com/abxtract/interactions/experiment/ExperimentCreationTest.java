@@ -18,13 +18,13 @@ import org.mockito.Mock;
 
 import com.abxtract.dtos.ExperimentCreationDto;
 import com.abxtract.models.Experiment;
+import com.abxtract.models.Project;
 import com.abxtract.models.Scenario;
-import com.abxtract.models.Tenant;
 import com.abxtract.repositories.ExperimentRepository;
 
 public class ExperimentCreationTest {
 
-	private final Tenant tenant = Tenant.builder().id( "some-tenant-id" ).build();
+	private final Project project = Project.builder().id( "some-project-id" ).build();
 
 	@InjectMocks
 	public ExperimentCreation experimentCreation;
@@ -44,7 +44,7 @@ public class ExperimentCreationTest {
 	public void testCreatePassingNull() {
 		exception.expect( IllegalArgumentException.class );
 		exception.expectMessage( "Experiment data is required!" );
-		experimentCreation.create( tenant, null );
+		experimentCreation.create( project, null );
 	}
 
 	@Test
@@ -53,7 +53,7 @@ public class ExperimentCreationTest {
 		exception.expectMessage( "Project id is required!" );
 		ExperimentCreationDto experiment = buildExperimentData();
 		experiment.setProjectId( "" );
-		experimentCreation.create( tenant, experiment );
+		experimentCreation.create( project, experiment );
 	}
 
 	@Test
@@ -62,7 +62,7 @@ public class ExperimentCreationTest {
 		exception.expectMessage( "Experiment name cannot be blank!" );
 		ExperimentCreationDto experiment = buildExperimentData();
 		experiment.setName( "" );
-		experimentCreation.create( tenant, experiment );
+		experimentCreation.create( project, experiment );
 	}
 
 	@Test
@@ -71,7 +71,7 @@ public class ExperimentCreationTest {
 		exception.expectMessage( "Experiment key cannot be blank!" );
 		ExperimentCreationDto experiment = buildExperimentData();
 		experiment.setKey( "" );
-		experimentCreation.create( tenant, experiment );
+		experimentCreation.create( project, experiment );
 	}
 
 	@Test
@@ -80,7 +80,7 @@ public class ExperimentCreationTest {
 		exception.expectMessage( "An experiment must have at least one checkpoint!" );
 		ExperimentCreationDto experiment = buildExperimentData();
 		experiment.setCheckpoints( Collections.EMPTY_LIST );
-		experimentCreation.create( tenant, experiment );
+		experimentCreation.create( project, experiment );
 	}
 
 	@Test
@@ -89,7 +89,7 @@ public class ExperimentCreationTest {
 		exception.expectMessage( "An experiment must have at least two scenarios!" );
 		ExperimentCreationDto experiment = buildExperimentData();
 		experiment.setScenarios( Collections.EMPTY_LIST );
-		experimentCreation.create( tenant, experiment );
+		experimentCreation.create( project, experiment );
 	}
 
 	@Test
@@ -98,7 +98,7 @@ public class ExperimentCreationTest {
 		exception.expectMessage( "A scenario name cannot be blank!" );
 		ExperimentCreationDto experiment = buildExperimentData();
 		experiment.getScenarios().get( 0 ).setName( "" );
-		experimentCreation.create( tenant, experiment );
+		experimentCreation.create( project, experiment );
 	}
 
 	@Test
@@ -107,7 +107,7 @@ public class ExperimentCreationTest {
 		exception.expectMessage( "A scenario key cannot be blank!" );
 		ExperimentCreationDto experiment = buildExperimentData();
 		experiment.getScenarios().get( 0 ).setKey( "" );
-		experimentCreation.create( tenant, experiment );
+		experimentCreation.create( project, experiment );
 	}
 
 	@Test
@@ -116,7 +116,7 @@ public class ExperimentCreationTest {
 		exception.expectMessage( "A scenario rate cannot be null!" );
 		ExperimentCreationDto experiment = buildExperimentData();
 		experiment.getScenarios().get( 0 ).setRate( null );
-		experimentCreation.create( tenant, experiment );
+		experimentCreation.create( project, experiment );
 	}
 
 	@Test
@@ -125,17 +125,17 @@ public class ExperimentCreationTest {
 		exception.expectMessage( "The sum of the scenario rates must be 100!" );
 		ExperimentCreationDto experiment = buildExperimentData();
 		experiment.getScenarios().get( 0 ).setRate( 20 );
-		experimentCreation.create( tenant, experiment );
+		experimentCreation.create( project, experiment );
 	}
 
 	@Test
 	public void testCrateExperiment() {
 		ExperimentCreationDto experimentData = buildExperimentData();
-		Experiment experiment = experimentCreation.create( tenant, experimentData );
+		Experiment experiment = experimentCreation.create( project, experimentData );
 
 		assertThat( experiment.getName(), equalTo( experimentData.getName() ) );
 		assertThat( experiment.getKey(), equalTo( experimentData.getKey() ) );
-		assertThat( experiment.getTenant(), equalTo( tenant ) );
+		assertThat( experiment.getProject(), equalTo( project ) );
 		assertThat( experiment.getScenarios(), hasSize( 2 ) );
 		Scenario firstScenario = experiment.getScenarios().get( 0 );
 		assertThat( firstScenario.getName(), equalTo( experimentData.getScenarios().get( 0 ).getName() ) );

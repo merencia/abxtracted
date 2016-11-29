@@ -9,10 +9,11 @@ import org.springframework.stereotype.Service;
 
 import com.abxtract.dtos.ExperimentCreationDto;
 import com.abxtract.models.Experiment;
+import com.abxtract.models.Project;
 import com.abxtract.models.Scenario;
 import com.abxtract.models.SplittedScenario;
-import com.abxtract.models.Tenant;
 import com.abxtract.repositories.ExperimentRepository;
+import com.abxtract.repositories.ProjectRepository;
 import com.google.common.base.Strings;
 
 @Service
@@ -21,12 +22,15 @@ public class ExperimentCreation {
 	@Autowired
 	private ExperimentRepository experimentRepository;
 
-	public Experiment create(Tenant tenant, ExperimentCreationDto experimentData) {
+	@Autowired
+	private ProjectRepository projectRepository;
+
+	public Experiment create(Project project, ExperimentCreationDto experimentData) {
 		validateExperimentData( experimentData );
 		Experiment experiment = Experiment.builder()
 				.key( experimentData.getKey() )
 				.name( experimentData.getName() )
-				.tenant( tenant ).build();
+				.project( project ).build();
 
 		experiment.setScenarios( buildScenarios( experimentData, experiment ) );
 		experimentRepository.save( experiment );
@@ -80,7 +84,7 @@ public class ExperimentCreation {
 	}
 
 	private void validateScenarios(ExperimentCreationDto experimentData) {
-		if (experimentData.getCheckpoints() == null || experimentData.getScenarios().size() < 2)
+		if (experimentData.getScenarios() == null || experimentData.getScenarios().size() < 2)
 			throw new IllegalArgumentException( "An experiment must have at least two scenarios!" );
 
 		experimentData.getScenarios().forEach( scenario -> {
