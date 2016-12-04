@@ -1,0 +1,30 @@
+management:
+  context-path: /management
+spring:
+  jpa:
+    hibernate:
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+      ddl-auto: update
+      naming_strategy: org.hibernate.cfg.ImprovedNamingStrategy
+      show_sql: false
+      format_sql: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/abxtract
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+security:
+  oauth2:
+    client:
+      clientId: 130476430955-mpuj4grf05tl2gq2f73g4p8liqc45blp.apps.googleusercontent.com
+      clientSecret: ng1zI-i9LkXx7i6T9zh3tV-P
+      accessTokenUri: https://www.googleapis.com/oauth2/v4/token
+      userAuthorizationUri: https://accounts.google.com/o/oauth2/v2/auth
+      clientAuthenticationScheme: form
+      scope:
+        - openid
+        - email
+        - profile
+    resource:
+      userInfoUri: https://www.googleapis.com/oauth2/v3/userinfo
+      preferTokenInfo: true
