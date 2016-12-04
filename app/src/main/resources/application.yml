@@ -1,7 +1,5 @@
 management:
   context-path: /management
-server:
-  contextPath: /api
 spring:
   application:
     name: abxtract
