@@ -20,5 +20,6 @@ google:
     id: 130476430955-mpuj4grf05tl2gq2f73g4p8liqc45blp.apps.googleusercontent.com
     secret: ng1zI-i9LkXx7i6T9zh3tV-P
     callback: http://localhost:8080/auth/callback
+    scopes: email profile openid
 
 
