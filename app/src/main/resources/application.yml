@@ -1,7 +1,5 @@
 management:
   context-path: /management
-server:
-  contextPath: /api
 spring:
   application:
     name: abxtract
@@ -17,18 +15,11 @@ spring:
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
-security:
+google:
   oauth2:
-    client:
-      clientId: 130476430955-mpuj4grf05tl2gq2f73g4p8liqc45blp.apps.googleusercontent.com
-      clientSecret: ng1zI-i9LkXx7i6T9zh3tV-P
-      accessTokenUri: https://www.googleapis.com/oauth2/v4/token
-      userAuthorizationUri: https://accounts.google.com/o/oauth2/v2/auth
-      clientAuthenticationScheme: form
-      scope:
-        - openid
-        - email
-        - profile
-    resource:
-      userInfoUri: https://www.googleapis.com/oauth2/v3/userinfo
-      preferTokenInfo: true
+    id: 130476430955-mpuj4grf05tl2gq2f73g4p8liqc45blp.apps.googleusercontent.com
+    secret: ng1zI-i9LkXx7i6T9zh3tV-P
+    callback: http://localhost:8080/auth/callback
+    scopes: email profile openid
+
+
