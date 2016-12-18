@@ -1,4 +1,5 @@
 #!/bin/bash
+(cd webapp && npm install)
 gulp build --cwd webapp
 cp -rf webapp/www/* app/src/main/resources/
 mvn clean install -f app/pom.xml
