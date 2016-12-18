@@ -1,0 +1,5 @@
+#!/bin/bash
+gulp build --cwd webapp
+cp -rf webapp/www/* app/src/main/resources/
+mvn clean install -f app/pom.xml
+docker build -t caarlos0/abxtracted .
