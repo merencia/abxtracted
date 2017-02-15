@@ -8,7 +8,7 @@ spring:
       dialect: org.hibernate.dialect.PostgreSQLDialect
       ddl-auto: update
       naming_strategy: org.hibernate.cfg.ImprovedNamingStrategy
-      show_sql: false
+      show_sql: true
       format_sql: true
   datasource:
     url: jdbc:postgresql://localhost:5432/abxtract
@@ -22,4 +22,8 @@ google:
     callback: http://localhost:8080/auth/callback
     scopes: email profile openid
 
-
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
