@@ -22,8 +22,8 @@ google:
     callback: http://localhost:8080/auth/callback
     scopes: email profile openid
 
-logging:
-  level:
-    org:
-      hibernate:
-        SQL: DEBUG
+#logging:
+#  level:
+#    org:
+#      hibernate:
+#        SQL: DEBUG
