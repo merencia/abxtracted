@@ -51,7 +51,7 @@ module.exports = function(grunt) {
         files: [{
           expand: true,
           cwd: project.paths.index.source.root,
-          src: ['index.html'],
+          src: [project.paths.index.source.filename],
           dest: project.paths.index.dist.root
         }]
       },
@@ -67,7 +67,7 @@ module.exports = function(grunt) {
         files: [{
           expand: true,
           cwd: project.paths.abxtracted.source.root,
-          src: ['abxtracted.min.js'],
+          src: [project.paths.abxtracted.source.filename],
           dest: project.paths.abxtracted.dist.root
         }]
       }

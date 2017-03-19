@@ -3,7 +3,8 @@
     "index": {
       "source": {
         "root": "src",
-        "file": "src/index.html"
+        "file": "src/index.html",
+        "filename": "index.html"
       },
       "dist": {
         "root": "./",
@@ -74,7 +75,8 @@
     },
     "abxtracted": {
       "source": {
-        "root": "node_modules/abxtracted/dist"
+        "root": "node_modules/abxtracted/dist",
+        "filename": "abxtracted.min.js"
       },
       "dist": {
         "root": "dist/public/"
