@@ -71,6 +71,14 @@
           "root": "dist/vendor/fonts/"
         }
       }
+    },
+    "abxtracted": {
+      "source": {
+        "root": "node_modules/abxtracted/dist"
+      },
+      "dist": {
+        "root": "dist/public/"
+      }
     }
   }
 }

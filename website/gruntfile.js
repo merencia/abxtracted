@@ -62,6 +62,14 @@ module.exports = function(grunt) {
           src: ['**/*.*'],
           dest: project.paths.fonts.dist.vendor.root
         }]
+      },
+      abxtracted: {
+        files: [{
+          expand: true,
+          cwd: project.paths.abxtracted.source.root,
+          src: ['abxtracted.min.js'],
+          dest: project.paths.abxtracted.dist.root
+        }]
       }
     },
 
@@ -142,6 +150,7 @@ module.exports = function(grunt) {
     'concat',
     'stylus:source',
     'copy:index',
+    'copy:abxtracted',
     'imagemin'
   ]);
 
