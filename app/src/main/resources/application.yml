@@ -3,6 +3,7 @@ management:
 spring:
   application:
     name: abxtract
+    domain: localhost
   jpa:
     hibernate:
       dialect: org.hibernate.dialect.PostgreSQLDialect
