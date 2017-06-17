@@ -18,8 +18,8 @@ spring:
     driver-class-name: org.postgresql.Driver
 google:
   oauth2:
-    id: 130476430955-mpuj4grf05tl2gq2f73g4p8liqc45blp.apps.googleusercontent.com
-    secret: ng1zI-i9LkXx7i6T9zh3tV-P
+    id: 46724653377-5mc933uc6sk2525j3dj2i92ph347udmt.apps.googleusercontent.com
+    secret: hIJbL1V6yWsg5PCVnday4ZzY
     callback: http://localhost:8080/auth/callback
     scopes: email profile openid
 
